@@ -1,5 +1,4 @@
 import os
-from PIL import Image
 from flask import (Flask, render_template, request, redirect, url_for, flash,
                    send_from_directory, session)
 from werkzeug.utils import secure_filename
@@ -324,4 +323,6 @@ def admin_contacts():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    debug = os.environ.get('FLASK_ENV', '').lower() != 'production'
+    app.run(host="0.0.0.0", port=port, debug=debug)
