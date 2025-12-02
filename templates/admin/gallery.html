@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Manage Gallery{% endblock %}
+{% block content %}
+
+<section class="py-5">
+  <div class="container">
+
+    <h2 class="admin-page-title">Gallery</h2>
+
+    <div class="admin-form-box col-md-6 mb-4">
+      <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <!-- Upload field (allow multiple files) -->
+        <div class="mb-3">
+          <input type="file" name="images" class="form-control" multiple>
+        </div>
+
+        <!-- Caption -->
+        <div class="mb-3">{{ form.caption(class_="form-control", placeholder="Caption (optional)") }}</div>
+
+        <!-- Category dropdown -->
+        <div class="mb-3">
+          <label class="form-label">Select Category</label>
+          {{ form.category(class_="form-select") }}
+        </div>
+
+        <button class="btn btn-primary w-100">{{ form.submit.label.text }}</button>
+      </form>
+    </div>
+
+    <div class="row g-4">
+      {% for img in images %}
+      <div class="col-md-3">
+        <img src="{{ url_for('uploaded_file', filename=img.filename) }}"
+             class="img-fluid rounded admin-image-card">
+
+        <p class="text-center mt-2 fw-bold">{{ img.category or "Uncategorized" }}</p>
+
+        <form action="{{ url_for('admin_delete_image', image_id=img.id) }}" method="post">
+          <button class="btn btn-sm btn-danger mt-2 w-100">Delete</button>
+        </form>
+      </div>
+      {% else %}
+      <p>No images</p>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
+<style></style>

@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% block content %}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+<style>
+    .about-hero {
+        background: linear-gradient(rgba(237, 12, 12, 0.6), rgba(17, 212, 66, 0.6)),
+        url('/static/img/about_bg.jpg') center/cover fixed;
+        padding: 120px 20px;
+        text-align: center;
+        color: rgb(18, 17, 17);
+        border-radius: 12px;
+        margin-bottom: 40px;
+    }
+
+    .about-section {
+        margin-bottom: 60px;
+        padding: 20px;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #176b34;
+        margin-bottom: 20px;
+        border-left: 6px solid #1b8f3a;
+        padding-left: 12px;
+        animation: fadeInLeft 1.2s;
+    }
+
+    .about-text {
+        font-size: 1.08rem;
+        color: #444;
+        line-height: 1.8;
+        animation: fadeInUp 1.5s;
+    }
+
+    .info-card {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin-bottom: 25px;
+        transition: 0.3s ease;
+        animation: fadeInUp 1.3s;
+    }
+
+    .info-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+    }
+
+    .emoji-title {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #1a7431;
+        margin-bottom: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .section-title { font-size: 1.7rem; }
+        .about-text { font-size: 1rem; }
+    }
+</style>
+
+<!-- ======================= HERO SECTION ======================= -->
+<div class="about-hero animate__animated animate__fadeIn">
+    <h1 class="display-5 fw-bold"> Thendral Youth  Association</h1>
+    <h4 class="mt-2">A Beacon of Unity Since 1996</h4>
+</div>
+
+<div class="container">
+
+    <!-- ===================== OUR HISTORY ====================== -->
+    <div class="about-section">
+        <h2 class="section-title">🏡 Our History</h2>
+        <p class="about-text">
+            The Thendral Youth Association was founded in 1996 by a dedicated group of young people and elders
+            from the beautiful village of Christian Pet. Most villagers were farmers, united by hard work, love, and a
+            strong desire to uplift their community.
+            <br><br>
+            The founding purpose of this association was clear:
+            <b>“Progress through Unity, Change through Love.”</b>
+            <br><br>
+            What began as small efforts — village cleaning, tree planting, streetlight installation, educational support,
+            and awareness programs — soon grew into a powerful community movement.
+        </p>
+    </div>
+
+    <!-- ===================== VILLAGE & PEOPLE ====================== -->
+    <div class="about-section">
+        <h2 class="section-title">🌾 Our Village & People</h2>
+        <div class="info-card">
+            <p class="about-text">
+                Christian Pet is a village blessed with natural beauty and warm-hearted people.  
+                Its residents, mostly farmers, have passed down their values of hard work, unity, and compassion.
+                <br><br>
+                Over the years, the younger generations have excelled in education and now shine across Europe, America,
+                Canada, and the Middle East in various professions.
+                Christian Pet today stands as a model village of “double development” and a symbol of unity and progress.
+            </p>
+        </div>
+    </div>
+
+    <!-- ===================== MISSION ====================== -->
+    <div class="about-section">
+        <h2 class="section-title">🌿 Our Mission</h2>
+        <div class="info-card">
+            <p class="about-text">
+                Our core mission is to work for the welfare and upliftment of society through unity.
+                <br><br>
+                <b>Key Objectives:</b><br>
+                • Support education & youth development<br>
+                • Continue environmental protection and tree plantation<br>
+                • Help financially weaker families<br>
+                • Spread love, unity & peace<br>
+                • Guide the younger generation to become responsible citizens<br><br>
+                <b>“Unity is our strength; trust is our path.”</b>
+            </p>
+        </div>
+    </div>
+
+    <!-- ===================== VISION ====================== -->
+    <div class="about-section">
+        <h2 class="section-title">✨ Our Vision</h2>
+        <div class="info-card">
+            <p class="about-text">
+                Our vision is a future where every individual contributes to the progress of the village and society.  
+                This is not just a dream — it is our continuous mission.
+                <br><br>
+                We believe:<br>
+                • “When we do great things, others will follow.”<br>
+                • “As long as we stand united, no obstacle can stop us.”
+            </p>
+        </div>
+    </div>
+
+    <!-- ===================== ACHIEVEMENTS ====================== -->
+    <div class="about-section">
+        <h2 class="section-title">🏅 Our Achievements</h2>
+
+        <div class="info-card">
+            <h4 class="emoji-title">🎓 Educational Support</h4>
+            <p class="about-text">Books, fees, and guidance for village students.</p>
+        </div>
+
+        <div class="info-card">
+            <h4 class="emoji-title">🌱 Environmental Protection</h4>
+            <p class="about-text">Tree plantation programs conducted every year.</p>
+        </div>
+
+        <div class="info-card">
+            <h4 class="emoji-title">🧒 Children’s Awareness Camps</h4>
+            <p class="about-text">Programs on health, education, and self-confidence.</p>
+        </div>
+
+        <div class="info-card">
+            <h4 class="emoji-title">🏡 Village Development</h4>
+            <p class="about-text">Improved hygiene, sanitation, and infrastructure.</p>
+        </div>
+
+        <div class="info-card">
+            <h4 class="emoji-title">💧 Water Management Projects</h4>
+            <p class="about-text">Supporting sustainable irrigation and water conservation.</p>
+        </div>
+
+        <div class="info-card">
+            <h4 class="emoji-title">💻 Digital Voting System</h4>
+            <p class="about-text">Modern online/offline voting ensuring transparency.</p>
+        </div>
+
+    </div>
+
+    <!-- ===================== PROMISE ====================== -->
+    <div class="about-section">
+        <h2 class="section-title">❤️ Our Promise</h2>
+        <div class="info-card">
+            <p class="about-text">
+                Thendral Youth Welfare Association is not just an organization —  
+                it is an emotion, a bond, and a responsibility.
+                <br><br>
+                Guided by the values of our elders, we promise to continue our journey with dedication,
+                turning hope into progress and progress into inspiration.
+                <br><br>
+                <b>“Thendral Youth Welfare Association –  
+                The pride of our village and the living symbol of unity!”</b> 🌿
+            </p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

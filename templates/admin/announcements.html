@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Manage Announcements{% endblock %}
+{% block content %}
+
+<section class="py-5">
+  <div class="container">
+
+    <h2 class="admin-page-title">Announcements</h2>
+
+    <div class="admin-form-box col-md-8 mb-4">
+      <form method="post">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">{{ form.title(class_="form-control", placeholder="Title") }}</div>
+        <div class="mb-3">{{ form.content(class_="form-control", rows=4) }}</div>
+
+        <button class="btn btn-primary w-100">{{ form.submit.label.text }}</button>
+      </form>
+    </div>
+
+    <ul class="list-group">
+      {% for n in notes %}
+      <li class="list-group-item">
+        <strong>{{ n.title }}</strong>
+        <small class="text-muted">— {{ n.created_at.strftime('%b %d') }}</small>
+      </li>
+      {% else %}
+      <li class="list-group-item">No announcements</li>
+      {% endfor %}
+    </ul>
+
+  </div>
+</section>
+
+{% endblock %}

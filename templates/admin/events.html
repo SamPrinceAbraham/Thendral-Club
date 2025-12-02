@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Manage Events{% endblock %}
+{% block content %}
+
+<section class="py-5">
+  <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="admin-page-title">Events</h2>
+      <a href="{{ url_for('admin_add_event') }}" class="btn btn-primary">➕ Add Event</a>
+    </div>
+
+    <div class="admin-form-box p-0">
+      <table class="table mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th style="width:150px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in events %}
+          <tr>
+            <td>{{ e.title }}</td>
+            <td>{{ e.date.strftime('%Y-%m-%d') }}</td>
+            <td>
+              <a href="{{ url_for('admin_edit_event', event_id=e.id) }}" class="btn btn-sm btn-warning">Edit</a>
+              <form method="post" action="{{ url_for('admin_delete_event', event_id=e.id) }}" style="display:inline;">
+                <button class="btn btn-sm btn-danger" onclick="return confirm('Delete event?')">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="3" class="text-center py-3">No events</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

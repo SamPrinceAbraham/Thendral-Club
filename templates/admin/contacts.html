@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Contact Messages{% endblock %}
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <h2>Contact Messages</h2>
+    <div class="list-group">
+      {% for c in contacts %}
+      <div class="list-group-item">
+        <div class="d-flex justify-content-between">
+          <div>
+            <strong>{{ c.name }}</strong> <small class="text-muted">{{ c.email }}</small>
+            <p>{{ c.message }}</p>
+          </div>
+          <div><small class="text-muted">{{ c.created_at.strftime('%b %d, %Y %H:%M') }}</small></div>
+        </div>
+      </div>
+      {% else %}
+      <p>No messages</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

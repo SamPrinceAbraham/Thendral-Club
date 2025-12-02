@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+
+<style>
+    /* Dashboard Heading */
+    .dashboard-title {
+        font-size: 2.6rem;
+        font-weight: 700;
+        margin-bottom: 25px;
+        animation: fadeInDown 0.6s ease;
+    }
+
+    /* Function Cards */
+    .admin-actions {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 35px;
+        flex-wrap: wrap;
+    }
+
+    .action-card {
+        padding: 14px 25px;
+        background: #fff;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        font-weight: 600;
+        text-decoration: none;
+        color: #333;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .action-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        background: #eef5ff;
+        border-color: #0d6efd;
+        color: #0d6efd;
+    }
+
+    /* Stats Cards */
+    .stats-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 22px;
+        margin-bottom: 35px;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.8s ease;
+    }
+
+    .stat-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 12px 25px rgba(0,0,0,0.18);
+    }
+
+    .stat-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #444;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 8px;
+        color: #0d6efd;
+    }
+
+    /* Events */
+    .events-box {
+        background: #fff;
+        padding: 20px 25px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+        animation: fadeInUp 1s ease;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<div class="container mt-5">
+
+    <!-- Dashboard Title -->
+    <h1 class="dashboard-title">Admin Dashboard</h1>
+
+    <!-- Function Cards -->
+    <div class="admin-actions">
+
+        <a href="{{ url_for('admin_events') }}" class="action-card">➕ Add New Event</a>
+
+        <a href="{{ url_for('admin_gallery') }}" class="action-card">🖼 Manage Gallery</a>
+
+        <a href="{{ url_for('admin_members') }}" class="action-card">👥 Manage Members</a>
+
+        <a href="{{ url_for('admin_announcements') }}" class="action-card">📢 Announcements</a>
+
+        <a href="{{ url_for('admin_logout') }}" class="action-card" style="color:red;border-color:#ffb3b3;">
+            🚪 Logout
+        </a>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-title">Members</div>
+            <div class="stat-value">{{ total_members }}</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">Events</div>
+            <div class="stat-value">{{ total_events }}</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">Gallery Images</div>
+            <div class="stat-value">{{ total_gallery }}</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">Messages</div>
+            <div class="stat-value">{{ total_messages }}</div>
+        </div>
+    </div>
+
+    <!-- Upcoming Events -->
+    <h4 class="mb-3">Upcoming Events</h4>
+    <div class="events-box">
+        {% if upcoming_events %}
+            {% for event in upcoming_events %}
+                <p><strong>{{ event.title }}</strong> — {{ event.date.strftime('%Y-%m-%d') }}</p>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted">No events scheduled.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

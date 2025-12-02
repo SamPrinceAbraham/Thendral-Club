@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+
+    <!-- Gallery Grid -->
+    <div class="row g-3 mt-3">
+
+      {% for img in images %}
+      {% set ext = img.filename.split('.')[-1].lower() %}
+
+      <div class="col-6 col-md-3">
+        <div class="media-wrapper rounded shadow-sm" style="overflow:hidden;">
+
+          {% if ext in ['mp4','mov','avi','webm'] %}
+              <!-- Video Preview -->
+              <video controls class="img-fluid rounded"
+                     style="width:100%; height:250px; object-fit:cover;">
+                  <source src="{{ url_for('uploaded_file', filename=img.filename) }}">
+              </video>
+
+          {% else %}
+              <!-- Image Preview -->
+              <a href="{{ url_for('uploaded_file', filename=img.filename) }}"
+                data-bs-toggle="modal"
+                data-bs-target="#lightbox-{{ img.id }}">
+                <img src="{{ url_for('uploaded_file', filename=img.filename) }}"
+                  class="img-fluid rounded"
+                  style="width:100%; height:250px; object-fit:cover;"
+                  alt="{{ img.caption or 'image' }}">
+              </a>
+          {% endif %}
+
+        </div>
+
+      </div>
+
+      <!-- Modal (for images only) -->
+      {% if ext not in ['mp4','mov','avi','webm'] %}
+      <div class="modal fade" id="lightbox-{{ img.id }}" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content bg-transparent border-0">
+            <div class="modal-body p-0">
+              <img src="{{ url_for('uploaded_file', filename=img.filename) }}"
+                   class="img-fluid w-100 rounded">
+              {% if img.caption %}
+                <div class="mt-2 text-light bg-dark p-2 rounded">{{ img.caption }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% else %}
+      <p>No images yet.</p>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+{% endblock %}

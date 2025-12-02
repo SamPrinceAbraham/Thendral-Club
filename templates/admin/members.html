@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Manage Members{% endblock %}
+{% block content %}
+
+<section class="py-5">
+  <div class="container">
+
+    <h2 class="admin-page-title">Members</h2>
+
+    <div class="admin-form-box col-md-8 mb-4">
+      <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">{{ form.name(class_="form-control", placeholder="Name") }}</div>
+        <div class="mb-3">{{ form.role(class_="form-control", placeholder="Role") }}</div>
+        <div class="mb-3">{{ form.bio(class_="form-control", placeholder="Bio", rows=3) }}</div>
+        <div class="mb-3">{{ form.photo(class_="form-control") }}</div>
+
+        <button class="btn btn-primary w-100">{{ form.submit.label.text }}</button>
+      </form>
+    </div>
+
+    <div class="row g-4">
+      {% for m in members %}
+      <div class="col-md-3 text-center">
+        <img src="{{ url_for('uploaded_file', filename=m.photo) if m.photo else url_for('static', filename='uploads/default-member.png') }}"
+             class="img-fluid rounded admin-image-card">
+        <h6 class="mt-2">{{ m.name }}</h6>
+        <small class="text-muted">{{ m.role }}</small>
+
+        <form method="post" action="{{ url_for('admin_delete_member', member_id=m.id) }}">
+          <button class="btn btn-sm btn-danger mt-2 w-100">Delete</button>
+        </form>
+      </div>
+      {% else %}
+      <p>No members</p>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Event Form{% endblock %}
+{% block content %}
+
+<section class="py-5">
+  <div class="container col-md-8">
+
+    <h2 class="admin-page-title">
+      {{ 'Edit Event' if event else 'Add Event' }}
+    </h2>
+
+    <div class="admin-form-box">
+      <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+          {{ form.title.label(class_="form-label") }}
+          {{ form.title(class_="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.date.label(class_="form-label") }}
+          {{ form.date(class_="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.time.label(class_="form-label") }}
+          {{ form.time(class_="form-control") }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.description.label(class_="form-label") }}
+          {{ form.description(class_="form-control", rows=4) }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.poster.label(class_="form-label") }}
+          {{ form.poster(class_="form-control") }}
+        </div>
+
+        <button class="btn btn-primary w-100">{{ form.submit.label.text }}</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
