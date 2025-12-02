@@ -1,5 +1,5 @@
 import os
-from tkinter import Image
+from PIL import Image
 from flask import (Flask, render_template, request, redirect, url_for, flash,
                    send_from_directory, session)
 from werkzeug.utils import secure_filename
